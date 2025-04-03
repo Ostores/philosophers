@@ -6,7 +6,7 @@
 /*   By: emlinott <emlinott@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 19:21:58 by emlinott          #+#    #+#             */
-/*   Updated: 2025/04/03 22:45:39 by emlinott         ###   ########.fr       */
+/*   Updated: 2025/04/03 23:55:05 by emlinott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,10 @@ void	*monitor(void *arg)
 		if (all_philos_ate(c))
 		{
 			set_stop(c, true);
-			return (NULL);
+			break ;
 		}
 	}
+	if (c->philo_count == 1)
+		pthread_mutex_unlock(c->philos[0].left_fork);
 	return (NULL);
 }

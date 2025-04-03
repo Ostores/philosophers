@@ -6,38 +6,60 @@
 /*   By: emlinott <emlinott@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 22:42:16 by emlinott          #+#    #+#             */
-/*   Updated: 2025/04/03 23:27:06 by emlinott         ###   ########.fr       */
+/*   Updated: 2025/04/03 23:53:31 by emlinott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
+#include <stddef.h>
+
+char	*ft_strstr(const char *dest, const char *src)
+{
+	size_t	i;
+	size_t	j;
+
+	if (*src == '\0')
+		return ((char *)dest);
+	i = 0;
+	while (dest[i])
+	{
+		j = 0;
+		while (dest[i + j] == src[j] && src[j] != '\0')
+			j++;
+		if (src[j] == '\0')
+			return ((char *)&dest[i]);
+		i++;
+	}
+	return (NULL);
+}
+
 static char	*select_color(char *msg)
 {
-	if (strstr(msg, "eating"))
+	if (ft_strstr(msg, "eating"))
 		return ("\033[1;32m");
-	else if (strstr(msg, "sleeping"))
+	else if (ft_strstr(msg, "sleeping"))
 		return ("\033[1;34m");
-	else if (strstr(msg, "thinking"))
+	else if (ft_strstr(msg, "thinking"))
 		return ("\033[1;33m");
-	else if (strstr(msg, "taken"))
+	else if (ft_strstr(msg, "taken"))
 		return ("\033[1;35m");
-	else if (strstr(msg, "died"))
+	else if (ft_strstr(msg, "died"))
 		return ("\033[1;31m");
 	return ("");
 }
 
 static char	*select_icon(char *msg)
 {
-	if (strstr(msg, "eating"))
+	if (ft_strstr(msg, "eating"))
 		return ("🍴 ");
-	else if (strstr(msg, "sleeping"))
+	else if (ft_strstr(msg, "sleeping"))
 		return ("💤 ");
-	else if (strstr(msg, "thinking"))
+	else if (ft_strstr(msg, "thinking"))
 		return ("💭 ");
-	else if (strstr(msg, "taken"))
+	else if (ft_strstr(msg, "taken"))
 		return ("⇆ ");
-	else if (strstr(msg, "died"))
+	else if (ft_strstr(msg, "died"))
 		return ("💀 ");
 	return ("");
 }

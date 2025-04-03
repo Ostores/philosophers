@@ -6,7 +6,7 @@
 /*   By: emlinott <emlinott@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 19:27:49 by emlinott          #+#    #+#             */
-/*   Updated: 2025/04/03 23:20:03 by emlinott         ###   ########.fr       */
+/*   Updated: 2025/04/03 23:58:32 by emlinott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void		*monitor(void *arg);
 
 // action
 void		take_forks(t_philo *philo, t_cardinal *c);
-void		release_forks(t_philo *philo);
+void		drop_forks(t_philo *philo);
 void		philo_eat(t_philo *philo, t_cardinal *c);
 void		philo_sleep(t_philo *philo, t_cardinal *c);
 void		philo_think(t_philo *philo, t_cardinal *c);

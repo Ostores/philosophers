@@ -6,7 +6,7 @@
 /*   By: emlinott <emlinott@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 19:35:41 by emlinott          #+#    #+#             */
-/*   Updated: 2025/04/03 22:58:34 by emlinott         ###   ########.fr       */
+/*   Updated: 2025/04/03 23:58:32 by emlinott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 
 void	take_forks(t_philo *philo, t_cardinal *c)
 {
+	if (c->philo_count == 1)
+	{
+		pthread_mutex_lock(philo->left_fork);
+		print_status(philo, c, "has taken a fork");
+		while (!should_stop(c))
+			usleep(1000);
+		pthread_mutex_unlock(philo->left_fork);
+		return ;
+	}
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(philo->left_fork);
@@ -30,7 +39,7 @@ void	take_forks(t_philo *philo, t_cardinal *c)
 	}
 }
 
-void	release_forks(t_philo *philo)
+void	drop_forks(t_philo *philo)
 {
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
